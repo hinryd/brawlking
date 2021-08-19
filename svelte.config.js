@@ -1,5 +1,6 @@
 import preprocess from 'svelte-preprocess'
 import WindiCSS from 'vite-plugin-windicss'
+import vercel from '@sveltejs/adapter-vercel'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +12,8 @@ const config = {
         target: 'body',
         vite: () => ({
             plugins: [WindiCSS.default()]
-        })
+        }),
+        adapter: vercel()
     }
 }
 
