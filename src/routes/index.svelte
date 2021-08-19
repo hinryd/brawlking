@@ -55,7 +55,14 @@
                         {map.id}
                     </span>
                 </div>
-                <div>
+
+                <div class="flex justify-between">
+                    <div
+                        class="inline text-xs text-white p-1 rounded"
+                        style="background-color: {map.gameMode.color}"
+                    >
+                        {map.gameMode.name}
+                    </div>
                     {#if map.disabled}
                         <div class="inline text-xs p-1 bg-red-400 rounded">
                             Inactive
@@ -75,5 +82,5 @@
             /> -->
         </button>
     {/each}
+    <Modal {showModal} {toggleModal} />
 </main>
-<Modal open={showModal} />
