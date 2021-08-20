@@ -39,50 +39,68 @@
         <h2 class="text-2xl font-bold text-center mb-3 text-gray-500">
             Brawlers
         </h2>
-        {#each map.stats.slice(0, 5) as stat}
-            <div class="flex justify-between">
-                {#await getBrawler(stat.brawler)}
-                    <p>Loading...</p>
-                {:then brawler}
-                    <img
-                        class="h-20 w-20"
-                        src={brawler.imageUrl}
-                        alt={brawler.name}
-                        loading="lazy"
-                    />
-                {/await}
+        <div class="grid grid-cols-2 gap-2">
+            {#if !map.stats}
+                <p class="text-center">No data available</p>
+            {:else}
+                {#each map.stats
+                    .sort((a, b) => b.winRate - a.winRate)
+                    .slice(0, 10) as stat}
+                    <div class="flex justify-between border">
+                        {#await getBrawler(stat.brawler)}
+                            <p>Loading...</p>
+                        {:then brawler}
+                            <img
+                                class="h-20 w-20"
+                                src={brawler.imageUrl}
+                                alt={brawler.name}
+                                loading="lazy"
+                            />
+                        {/await}
 
-                <div class="font-mono text-right">
-                    <p>👍 {stat.winRate.toFixed(2)}%</p>
-                    <p>🔥 {stat.useRate.toFixed(2)}%</p>
-                    <p>⭐ {stat.starRate.toFixed(2)}%</p>
-                </div>
-            </div>
-        {/each}
+                        <div
+                            class="font-mono text-right flex flex-col justify-center pr-2"
+                        >
+                            <p>{stat.winRate.toFixed(2)}% 👍</p>
+                            <p>{stat.useRate.toFixed(2)}% 🔥</p>
+                            <p>{stat.starRate.toFixed(2)}% ⭐</p>
+                        </div>
+                    </div>
+                {/each}
+            {/if}
+        </div>
     </div>
 
     <div class="p-4">
         <h2 class="text-2xl font-bold text-center mb-3 text-gray-500">Teams</h2>
-        {#each map.teamStats.slice(0, 5) as teamStat}
-            <div class="flex justify-between">
-                <div class="flex">
-                    {#each teamStat.hash.split('+') as brawler}
-                        <img
-                            class="h-20 w-20"
-                            src="https://cdn.brawlify.com/brawler/{brawler}.png"
-                            alt={brawler}
-                            loading="lazy"
-                        />
-                    {/each}
-                </div>
+        {#if !map.teamStats}
+            <p class="text-center">No data available</p>
+        {:else}
+            {#each map.teamStats
+                .sort((a, b) => b.data.winRate - a.data.winRate)
+                .slice(0, 5) as teamStat}
+                <div class="flex justify-between border mb-2">
+                    <div class="flex">
+                        {#each teamStat.hash.split('+') as brawler}
+                            <img
+                                class="h-20 w-20"
+                                src="https://cdn.brawlify.com/brawler/{brawler}.png"
+                                alt={brawler}
+                                loading="lazy"
+                            />
+                        {/each}
+                    </div>
 
-                <div class="font-mono text-right">
-                    <p>👍 {teamStat.data.winRate.toFixed(2)}%</p>
-                    <p>🔥 {teamStat.data.useRate.toFixed(2)}%</p>
-                    <p>🎮 {teamStat.data.total}</p>
+                    <div
+                        class="font-mono text-right flex flex-col justify-center pr-2"
+                    >
+                        <p>{teamStat.data.winRate.toFixed(2)}% 👍</p>
+                        <p>{teamStat.data.useRate.toFixed(2)}% 🔥</p>
+                        <p>{teamStat.data.total} games 🎮</p>
+                    </div>
                 </div>
-            </div>
-        {/each}
+            {/each}
+        {/if}
     </div>
 
     <h2 class="text-2xl font-bold text-center text-gray-500">Map</h2>
