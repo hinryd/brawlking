@@ -29,14 +29,15 @@
         <img src={map.environment.imageUrl} alt="Environment" />
 
         <figcaption class="absolute flex justify-center -bottom-5 w-full">
-            <span class="text-4xl font-bold bg-white bg-opacity-80 rounded p-2"
+            <span
+                class="text-4xl font-bold bg-white bg-opacity-80 rounded px-5 py-2"
                 >{map.name}</span
             >
         </figcaption>
     </figure>
 
     <div class="p-4">
-        <h2 class="text-2xl font-bold text-center mb-3 text-gray-500">
+        <h2 class="text-2xl font-bold text-center my-3 text-gray-500">
             Brawlers
         </h2>
         <div class="grid grid-cols-2 gap-2">
@@ -59,9 +60,9 @@
                         {/await}
 
                         <div
-                            class="font-mono text-right flex flex-col justify-center pr-2"
+                            class="font-mono text-sm text-right flex flex-col justify-center pr-1"
                         >
-                            <p>{stat.winRate.toFixed(2)}% 👍</p>
+                            <p>{stat.winRate.toFixed(2)}% 🏁</p>
                             <p>{stat.useRate.toFixed(2)}% 🔥</p>
                             <p>{stat.starRate.toFixed(2)}% ⭐</p>
                         </div>
@@ -92,11 +93,11 @@
                     </div>
 
                     <div
-                        class="font-mono text-right flex flex-col justify-center pr-2"
+                        class="font-mono text-sm text-right flex flex-col justify-center pr-2"
                     >
-                        <p>{teamStat.data.winRate.toFixed(2)}% 👍</p>
+                        <p>{teamStat.data.winRate.toFixed(2)}% 🏁</p>
                         <p>{teamStat.data.useRate.toFixed(2)}% 🔥</p>
-                        <p>{teamStat.data.total} games 🎮</p>
+                        <p>{teamStat.data.total} 🎲</p>
                     </div>
                 </div>
             {/each}
