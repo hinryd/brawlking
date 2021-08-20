@@ -40,7 +40,7 @@
             Brawlers
         </h2>
         <div class="grid grid-cols-2 gap-2">
-            {#if !map.stats}
+            {#if map.stats.length === 0}
                 <p class="text-center">No data available</p>
             {:else}
                 {#each map.stats
@@ -73,7 +73,7 @@
 
     <div class="p-4">
         <h2 class="text-2xl font-bold text-center mb-3 text-gray-500">Teams</h2>
-        {#if !map.teamStats}
+        {#if map.teamStats.length === 0}
             <p class="text-center">No data available</p>
         {:else}
             {#each map.teamStats
