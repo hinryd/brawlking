@@ -11,7 +11,6 @@
     export let maps: any[]
 
     import fuse from '../fuse'
-    import Modal from '$lib/Modal.svelte'
 
     let query = ''
     let showModal = false
@@ -23,27 +22,28 @@
 
     $: if (query) {
         filteredMaps = searchMaps(query)
-            .map(i => i.item)
-            .slice(0, 15)
+            .map(obj => obj.item)
+            .filter(map => !map.disabled)
     } else {
-        filteredMaps = maps.slice(0, 15)
+        filteredMaps = maps.filter(map => !map.disabled)
     }
 </script>
 
 <main>
-    <div class="p-4 bg-indigo-700">
+    <div class="sticky top-0 p-3 bg-indigo-700">
         <input
-            class="w-full p-4 rounded-full"
+            class="w-full px-4 py-2 rounded-full"
             placeholder="Search maps..."
             bind:value={query}
         />
     </div>
 
     {#each filteredMaps as map}
-        <button
+        <a
             class="flex justify-between border-b w-full text-left"
             w-active="bg-gray-200"
             on:click={toggleModal}
+            href="/maps/{map.id}"
         >
             <div class="p-4 w-full">
                 <div class="flex w-full">
@@ -74,13 +74,6 @@
                     {/if}
                 </div>
             </div>
-            <!-- <img
-                class="w-30 py-1 pr-1"
-                src={map.imageUrl}
-                alt="Map"
-                loading="lazy"
-            /> -->
-        </button>
+        </a>
     {/each}
-    <Modal {showModal} {toggleModal} />
 </main>
