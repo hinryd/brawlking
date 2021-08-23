@@ -9,13 +9,8 @@
 </script>
 
 <script lang="ts">
-    export let map: {
-        environment: any
-        stats: any[]
-        name: string
-        teamStats: any[]
-        imageUrl: string
-    }
+    import type { BrawlMap } from '../../global'
+    export let map: BrawlMap
 
     async function getBrawler(id) {
         return await fetch(
@@ -72,7 +67,7 @@
                                 <p title="Average Position">
                                     {stat.avgPosition.toFixed(2)} 📶
                                 </p>
-                            {:else}
+                            {:else if stat.starRate}
                                 <p title="Star Rate">
                                     {stat.starRate.toFixed(2)}% ⭐
                                 </p>
