@@ -40,10 +40,10 @@
         <h2 class="text-2xl font-bold text-center my-3 text-gray-500">
             Brawlers
         </h2>
-        <div class="grid grid-cols-2 gap-2">
-            {#if map.stats.length === 0}
-                <p class="text-center">No data available</p>
-            {:else}
+        {#if map.stats.length === 0}
+            <p class="text-center">No data available</p>
+        {:else}
+            <div class="grid grid-cols-2 gap-1">
                 {#each map.stats
                     .sort((a, b) => b.winRate - a.winRate)
                     .slice(0, 10) as stat}
@@ -64,12 +64,16 @@
                         >
                             <p>{stat.winRate.toFixed(2)}% 🏁</p>
                             <p>{stat.useRate.toFixed(2)}% 🔥</p>
-                            <p>{stat.starRate.toFixed(2)}% ⭐</p>
+                            {#if map.gameMode.id === 3}
+                                <p>{stat.avgPosition.toFixed(2)} 📶</p>
+                            {:else}
+                                <p>{stat.starRate.toFixed(2)}% ⭐</p>
+                            {/if}
                         </div>
                     </div>
                 {/each}
-            {/if}
-        </div>
+            </div>
+        {/if}
     </div>
 
     <div class="p-4">
