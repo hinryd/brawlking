@@ -30,7 +30,7 @@
 
         <figcaption class="absolute flex justify-center -bottom-5 w-full">
             <span
-                class="text-4xl font-bold bg-white bg-opacity-80 rounded px-5 py-2"
+                class="text-4xl font-bold bg-white bg-opacity-80 rounded px-6 py-2"
                 >{map.name}</span
             >
         </figcaption>
