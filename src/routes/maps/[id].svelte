@@ -62,12 +62,20 @@
                         <div
                             class="font-mono text-sm text-right flex flex-col justify-center pr-1"
                         >
-                            <p>{stat.winRate.toFixed(2)}% 🏁</p>
-                            <p>{stat.useRate.toFixed(2)}% 🔥</p>
+                            <p title="Win Rate">
+                                {stat.winRate.toFixed(2)}% 🏁
+                            </p>
+                            <p title="Use Rate">
+                                {stat.useRate.toFixed(2)}% 🔥
+                            </p>
                             {#if map.gameMode.id === 3}
-                                <p>{stat.avgPosition.toFixed(2)} 📶</p>
+                                <p title="Average Position">
+                                    {stat.avgPosition.toFixed(2)} 📶
+                                </p>
                             {:else}
-                                <p>{stat.starRate.toFixed(2)}% ⭐</p>
+                                <p title="Star Rate">
+                                    {stat.starRate.toFixed(2)}% ⭐
+                                </p>
                             {/if}
                         </div>
                     </div>
@@ -99,9 +107,13 @@
                     <div
                         class="font-mono text-sm text-right flex flex-col justify-center pr-2"
                     >
-                        <p>{teamStat.data.winRate.toFixed(2)}% 🏁</p>
-                        <p>{teamStat.data.useRate.toFixed(2)}% 🔥</p>
-                        <p>{teamStat.data.total} 🎲</p>
+                        <p title="Win Rate">
+                            {teamStat.data.winRate.toFixed(2)}% 🏁
+                        </p>
+                        <p title="Use Rate">
+                            {teamStat.data.useRate.toFixed(2)}% 🔥
+                        </p>
+                        <p title="Total Games">{teamStat.data.total} 🎲</p>
                     </div>
                 </div>
             {/each}
